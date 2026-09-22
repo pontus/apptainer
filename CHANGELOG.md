@@ -9,6 +9,8 @@ For older changes see the [archived Singularity change log](https://github.com/a
 
 Changes since 1.5.x
 
+- Skip validation of oras image downloads if the user requests an architecture
+  that is incompatible with the current machine.
 - List the Fedora build dependencies explicitly instead of installing a
   development tools group.
 - Allow building RPM packages with Fedora 45's renamed protobuf-c library.
