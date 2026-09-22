@@ -23,6 +23,7 @@ import (
 	"time"
 
 	"github.com/apptainer/apptainer/internal/pkg/client"
+	"github.com/apptainer/apptainer/internal/pkg/util/machine"
 	"github.com/apptainer/apptainer/internal/pkg/util/ociauth"
 	"github.com/apptainer/apptainer/pkg/image"
 	"github.com/apptainer/apptainer/pkg/inspect"
@@ -119,6 +120,12 @@ func DownloadImage(ctx context.Context, path, ref, arch string, ociAuth *authn.A
 	_, err = io.Copy(outFile, blob)
 	if err != nil {
 		return err
+	}
+
+	// If requested architecture is not compatible with runtime, skip image
+	// validation
+	if !machine.CompatibleWith(arch) {
+		return nil
 	}
 
 	// Ensure that we have downloaded a SIF
