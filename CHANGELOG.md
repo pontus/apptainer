@@ -9,6 +9,8 @@ For older changes see the [archived Singularity change log](https://github.com/a
 
 Changes since 1.5.x
 
+- Skip validation of oras image downloads if the user requests an architecture
+  that is incompatible with the current machine.
 - Add support for building data partitions from tar files using
   `apptainer build --data image.sif input.tar*`. Supports uncompressed (.tar) and
   compressed (.tar.gz, .tar.xz, .tar.zst, .tar.lzo) archives, with decompression
