@@ -362,6 +362,32 @@ func (c ctx) testPullCmd(t *testing.T) {
 			sandbox:          true,
 			expectedExitCode: 0,
 		},
+		{
+			desc:             "oras multiarch no arch specified",
+			srcURI:           "oras://ghcr.io/apptainer/apptainer:1.4.5",
+			force:            true,
+			createDst:        false,
+			unauthenticated:  true,
+			expectedExitCode: 0,
+		},
+		{
+			desc:             "oras multiarch amd64",
+			srcURI:           "oras://ghcr.io/apptainer/apptainer:1.4.5",
+			force:            true,
+			arch:             "amd64",
+			createDst:        false,
+			unauthenticated:  true,
+			expectedExitCode: 0,
+		},
+		{
+			desc:             "oras multiarch arm64",
+			srcURI:           "oras://ghcr.io/apptainer/apptainer:1.4.5",
+			force:            true,
+			arch:             "arm64",
+			createDst:        false,
+			unauthenticated:  true,
+			expectedExitCode: 0,
+		},
 	}
 
 	for _, tt := range tests {
